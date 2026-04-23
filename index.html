@@ -3,218 +3,355 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 미래내일 일경험 사업 브리핑 & 실무 가이드</title>
+    <title>2026 미래내일 일경험 - 대시보드 & 가이드</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&display=swap');
-        body { font-family: 'Pretendard', sans-serif; word-break: keep-all; }
-        .gradient-bg { background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); }
-        .section-card { border-radius: 1rem; background: white; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); padding: 2rem; margin-bottom: 2rem; }
+        body { font-family: 'Pretendard', sans-serif; scroll-behavior: smooth; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
+        .prog-bar { transition: width 1s ease-in-out; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 leading-relaxed">
+<body class="bg-slate-50 text-slate-900">
 
-    <!-- Hero Section -->
-    <header class="gradient-bg text-white py-16 px-4 text-center">
-        <div class="max-w-4xl mx-auto">
-            <h1 class="text-3xl md:text-5xl font-bold mb-4">2026 미래내일 일경험 사업</h1>
-            <p class="text-xl opacity-90">사업 브리핑 및 성공적인 인턴십을 위한 실무 가이드</p>
-            <div class="mt-8 flex flex-wrap justify-center gap-4 text-sm font-medium">
-                <span class="bg-white/20 px-4 py-2 rounded-full border border-white/30">주관: 고용노동부, 대한상공회의소</span>
-                <span class="bg-white/20 px-4 py-2 rounded-full border border-white/30">운영: 한국생산성본부</span>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2 font-bold text-blue-700 text-xl">
+                <i class="fas fa-rocket"></i>
+                <span>미래내일 2026</span>
+            </div>
+            <div class="hidden md:flex gap-6 text-sm font-medium">
+                <button onclick="switchTab('home')" class="nav-link text-blue-600 border-b-2 border-blue-600 pb-1">홈</button>
+                <button onclick="switchTab('info')" class="nav-link hover:text-blue-600 transition-colors">사업정보</button>
+                <button onclick="switchTab('check')" class="nav-link hover:text-blue-600 transition-colors">자격확인</button>
+                <button onclick="switchTab('guide')" class="nav-link hover:text-blue-600 transition-colors">실무가이드</button>
+            </div>
+            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-all">신청하기</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-20 px-4 max-w-5xl mx-auto">
+
+        <!-- [TAB] HOME -->
+        <div id="home" class="tab-content active">
+            <div class="text-center mb-12">
+                <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full uppercase">Employment Experience 2026</span>
+                <h1 class="text-4xl md:text-5xl font-black mt-4 mb-6 leading-tight">경험이 스펙이 되는<br><span class="text-blue-600">가장 확실한 방법</span></h1>
+                <p class="text-slate-500 max-w-2xl mx-auto text-lg">고용노동부와 대한상공회의소가 함께하는 청년 일경험 지원 사업. 실무 역량 강화부터 재정 지원까지 한 번에 확인하세요.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div onclick="switchTab('info')" class="cursor-pointer group p-8 rounded-3xl bg-white border border-slate-100 shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                        <i class="fas fa-info-circle text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">사업 브리핑</h3>
+                    <p class="text-slate-500 text-sm">인턴형, 프로젝트형 등 상세 운영 방식 확인</p>
+                </div>
+                <div onclick="switchTab('check')" class="cursor-pointer group p-8 rounded-3xl bg-white border border-slate-100 shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2">
+                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                        <i class="fas fa-user-check text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">참여 자격 계산기</h3>
+                    <p class="text-slate-500 text-sm">나의 조건으로 참여 가능 여부 즉시 체크</p>
+                </div>
+                <div onclick="switchTab('guide')" class="cursor-pointer group p-8 rounded-3xl bg-white border border-slate-100 shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2">
+                    <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                        <i class="fas fa-lightbulb text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">실무 꿀팁</h3>
+                    <p class="text-slate-500 text-sm">7:2:1 법칙과 성공적인 인턴 생활 가이드</p>
+                </div>
             </div>
         </div>
-    </header>
 
-    <main class="max-w-5xl mx-auto px-4 py-12">
-        
-        <!-- Executive Summary -->
-        <section class="section-card border-l-8 border-blue-600">
-            <h2 class="text-2xl font-bold mb-4 text-blue-800"><i class="fas fa-list-check mr-2"></i>요약 (Executive Summary)</h2>
-            <p class="text-gray-700">
-                본 문서는 미취업 청년들에게 양질의 직무 경험을 제공하여 노동시장 진입을 촉진하는 <strong>'2026년 미래내일 일경험 사업'</strong>의 핵심 지침서입니다. 
-                수시·경력직 중심의 채용 트렌드에 맞춰 인턴형, 프로젝트형 등 맞춤형 프로그램을 제공하며, 주당 최대 37.5만 원의 수당을 지원합니다. 
-                개인 역량 개발의 70%가 실무를 통해 이루어진다는 원칙하에 청년의 커리어 형성을 적극 지원합니다.
-            </p>
-        </section>
-
-        <!-- 1. 사업 개요 -->
-        <section class="mb-12">
-            <div class="flex items-center mb-6">
-                <div class="bg-blue-600 w-2 h-8 mr-3"></div>
-                <h2 class="text-2xl font-bold">1. 미래내일 일경험 사업 개요</h2>
-            </div>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="section-card !mb-0">
-                    <h3 class="font-bold text-lg mb-3 text-blue-700">추진 배경 및 목적</h3>
-                    <ul class="space-y-2 text-sm text-gray-600">
-                        <li><i class="fas fa-check text-blue-500 mr-2"></i>수시·경력직 중심의 채용 트렌드 변화 대응</li>
-                        <li><i class="fas fa-check text-blue-500 mr-2"></i>청년 일경험 수요-공급 미스매칭 해소</li>
-                        <li><i class="fas fa-check text-blue-500 mr-2"></i>실무 역량 강화를 통한 노동시장 진입 촉진</li>
-                    </ul>
-                </div>
-                <div class="section-card !mb-0">
-                    <h3 class="font-bold text-lg mb-3 text-blue-700">추진 체계</h3>
-                    <ul class="space-y-2 text-sm text-gray-600">
-                        <li><strong>주관:</strong> 고용노동부, 대한상공회의소</li>
-                        <li><strong>운영:</strong> 한국생산성본부 (전문직무교육)</li>
-                        <li><strong>현장:</strong> 다양한 산업군의 참여기업 (IT, 마케팅 등)</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- 2. 프로그램 유형 -->
-        <section class="mb-12">
-            <div class="flex items-center mb-6">
-                <div class="bg-blue-600 w-2 h-8 mr-3"></div>
-                <h2 class="text-2xl font-bold">2. 일경험 프로그램 주요 유형</h2>
-            </div>
-            <div class="overflow-x-auto shadow-sm rounded-xl">
-                <table class="w-full text-left border-collapse bg-white">
-                    <thead class="bg-blue-50 text-blue-800 uppercase text-sm">
-                        <tr>
-                            <th class="px-6 py-4 border-b">유형</th>
-                            <th class="px-6 py-4 border-b">주요 내용</th>
-                            <th class="px-6 py-4 border-b">운영 기간</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-gray-700">
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 border-b font-semibold">인턴형</td>
-                            <td class="px-6 py-4 border-b text-sm">재직자와 실무 수행 및 전문가 멘토링</td>
-                            <td class="px-6 py-4 border-b text-sm">4주 ~ 20주 (주 25시간)</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 border-b font-semibold">프로젝트형</td>
-                            <td class="px-6 py-4 border-b text-sm">기업 제안 직무 프로젝트 수행 및 코칭</td>
-                            <td class="px-6 py-4 border-b text-sm">8주 내외</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 border-b font-semibold">ESG 지원형</td>
-                            <td class="px-6 py-4 border-b text-sm">기업의 ESG 차원 직무훈련 및 취업지원</td>
-                            <td class="px-6 py-4 border-b text-sm">기업별 상이</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- 3. 참여 자격 및 혜택 -->
-        <section class="mb-12">
-            <div class="flex items-center mb-6">
-                <div class="bg-blue-600 w-2 h-8 mr-3"></div>
-                <h2 class="text-2xl font-bold">3. 참여 자격 및 지원 혜택</h2>
-            </div>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white p-6 rounded-xl border border-gray-200">
-                    <h3 class="text-lg font-bold mb-4 flex items-center"><i class="fas fa-user-check text-blue-600 mr-2"></i>참여 자격</h3>
-                    <ul class="space-y-3 text-sm">
-                        <li class="flex items-start"><span class="text-blue-600 mr-2">•</span> 15세~34세 미취업 청년 (군필 최고 39세)</li>
-                        <li class="flex items-start"><span class="text-blue-600 mr-2">•</span> 미취업 기준: 주 30시간 미만 근무</li>
-                        <li class="flex items-start"><span class="text-blue-600 mr-2">•</span> 사업자: 연 소득 1,200만 원 이하 증빙</li>
-                        <li class="text-xs text-red-500 font-medium mt-2">* 제한: 외국인, 대표자 직계가족, 상습 중도포기자 등</li>
-                    </ul>
-                </div>
-                <div class="bg-blue-50 p-6 rounded-xl border border-blue-100">
-                    <h3 class="text-lg font-bold mb-4 flex items-center"><i class="fas fa-coins text-yellow-600 mr-2"></i>재정적 지원</h3>
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-center bg-white p-3 rounded shadow-sm">
-                            <span class="text-sm">참여수당(인턴형)</span>
-                            <span class="font-bold text-blue-700">주당 37.5만 원</span>
-                        </div>
-                        <div class="flex justify-between items-center bg-white p-3 rounded shadow-sm">
-                            <span class="text-sm">직무교육 수당</span>
-                            <span class="font-bold text-blue-700">1일 10,000원</span>
-                        </div>
-                        <div class="flex justify-between items-center bg-white p-3 rounded shadow-sm">
-                            <span class="text-sm">체류지원비(원거리)</span>
-                            <span class="font-bold text-blue-700">주당 5만 원</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. 운영 수칙 -->
-        <section class="section-card bg-gray-900 text-white">
-            <h2 class="text-2xl font-bold mb-6 flex items-center text-red-400"><i class="fas fa-triangle-exclamation mr-3"></i>4. 운영 수칙 및 부정수급 예방</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-lg font-semibold mb-3 border-b border-gray-700 pb-2">중복참여 및 탈락</h3>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li>- 연간 최대 2회까지 참여 가능</li>
-                        <li>- 타 부처 지원사업(청년수당 등)과 중복 불가</li>
-                        <li>- 무단결석 5일 이상 시 강제 중도탈락</li>
-                        <li>- 공가는 20% 초과 시 미수료 처리</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-3 border-b border-gray-700 pb-2">부정수급 처벌</h3>
-                    <p class="text-sm text-gray-400 mb-4">보조금 관리에 관한 법률에 따라 엄격히 관리됩니다.</p>
-                    <div class="bg-red-900/30 p-4 rounded border border-red-800 text-red-200 text-xs">
-                        출석부 허위 등록, 명의 도용 등 적발 시:<br>
-                        <strong>전액 환수 + 최대 5배 제재부과금 + 형사고발</strong>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. 실무 가이드 -->
-        <section class="mb-12">
-            <div class="flex items-center mb-6">
-                <div class="bg-blue-600 w-2 h-8 mr-3"></div>
-                <h2 class="text-2xl font-bold">5. 슬기로운 인턴생활 실무 가이드</h2>
-            </div>
+        <!-- [TAB] INFO -->
+        <div id="info" class="tab-content">
+            <h2 class="text-3xl font-bold mb-8 flex items-center gap-3">
+                <span class="w-10 h-10 bg-blue-600 text-white rounded-lg flex items-center justify-center text-sm">01</span>
+                사업 상세 정보
+            </h2>
             
-            <!-- 7:2:1 Rule Chart -->
-            <div class="section-card text-center overflow-hidden relative">
-                <h3 class="text-xl font-bold mb-8">역량 개발의 핵심: 7:2:1 법칙</h3>
-                <div class="flex h-12 rounded-full overflow-hidden mb-6 max-w-2xl mx-auto">
-                    <div class="bg-blue-600 flex items-center justify-center text-white text-xs font-bold w-[70%]">70% 실무 경험</div>
-                    <div class="bg-blue-400 flex items-center justify-center text-white text-xs font-bold w-[20%]">20% 멘토링</div>
-                    <div class="bg-blue-200 flex items-center justify-center text-blue-800 text-xs font-bold w-[10%]">10% 교육</div>
+            <!-- Type Tabs -->
+            <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 mb-8">
+                <h3 class="text-xl font-bold mb-6">프로그램 유형별 운영 방식</h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="p-4 rounded-2xl bg-blue-50 border border-blue-100">
+                        <div class="font-bold text-blue-700 mb-2">인턴형</div>
+                        <div class="text-sm text-slate-600 mb-4">재직자와 실무 수행 및 멘토링</div>
+                        <div class="text-xs font-semibold text-blue-500 uppercase tracking-wider">4~20주 (주 25H)</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-emerald-50 border border-emerald-100">
+                        <div class="font-bold text-emerald-700 mb-2">프로젝트형</div>
+                        <div class="text-sm text-slate-600 mb-4">직무 기반 프로젝트 결과물 도출</div>
+                        <div class="text-xs font-semibold text-emerald-500 uppercase tracking-wider">8주 내외</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-amber-50 border border-amber-100">
+                        <div class="font-bold text-amber-700 mb-2">ESG 지원형</div>
+                        <div class="text-sm text-slate-600 mb-4">기업 자체 취업지원 프로그램</div>
+                        <div class="text-xs font-semibold text-amber-500 uppercase tracking-wider">기업별 상이</div>
+                    </div>
                 </div>
-                <p class="text-sm text-gray-600 italic">"진정한 성장은 현장의 새로운 일을 경험할 때 이루어집니다."</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-blue-500">
-                    <h4 class="font-bold mb-3">성공 전략</h4>
-                    <ul class="text-sm space-y-2 text-gray-600">
-                        <li>• 명확한 목표 사전 정의</li>
-                        <li>• "질문의 권리"를 활용할 것</li>
-                        <li>• 업무 지시 메모 습관화</li>
-                        <li>• 태도와 인성이 최고의 실력</li>
-                    </ul>
+            <!-- Benefit Cards -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-slate-900 text-white p-8 rounded-3xl">
+                    <h4 class="text-lg font-bold mb-6 text-blue-400">재정 지원 혜택</h4>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center border-b border-slate-700 pb-3">
+                            <span class="text-slate-400">참여 수당 (인턴)</span>
+                            <span class="font-bold">주 37.5만원</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-slate-700 pb-3">
+                            <span class="text-slate-400">직무교육 수당</span>
+                            <span class="font-bold">일 1만원</span>
+                        </div>
+                        <div class="flex justify-between items-center pb-3">
+                            <span class="text-slate-400">체류 지원비</span>
+                            <span class="font-bold">주 5만원</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-green-500">
-                    <h4 class="font-bold mb-3">퍼스널 브랜딩</h4>
-                    <ul class="text-sm space-y-2 text-gray-600">
-                        <li>• 노션/브런치에 기록 남기기</li>
-                        <li>• 디지털 포트폴리오 구축</li>
-                        <li>• 비언어적 리액션 활용</li>
-                        <li>• 적극적인 참여 의지 표현</li>
-                    </ul>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-yellow-500">
-                    <h4 class="font-bold mb-3">직장 매너</h4>
-                    <ul class="text-sm space-y-2 text-gray-600">
-                        <li>• 인사는 기본 중의 기본</li>
-                        <li>• 실수 시 즉시 사과하는 용기</li>
-                        <li>• 메신저/메일 예의 유지</li>
-                        <li>• 경쟁보다 동료와 협력</li>
+                <div class="bg-white p-8 rounded-3xl border border-slate-100">
+                    <h4 class="text-lg font-bold mb-4">필수 유의사항</h4>
+                    <ul class="space-y-3 text-sm text-slate-600">
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-exclamation-circle text-red-500 mt-1"></i>
+                            <span>연간 최대 2회까지만 참여 가능합니다.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-exclamation-circle text-red-500 mt-1"></i>
+                            <span>타 정부 지원금(청년수당 등)과 중복 수혜 불가.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-exclamation-circle text-red-500 mt-1"></i>
+                            <span>출석률 90% 미만 시 수료증 발급이 제한됩니다.</span>
+                        </li>
                     </ul>
                 </div>
             </div>
-        </section>
+        </div>
+
+        <!-- [TAB] CHECK -->
+        <div id="check" class="tab-content">
+            <h2 class="text-3xl font-bold mb-8 flex items-center gap-3">
+                <span class="w-10 h-10 bg-emerald-600 text-white rounded-lg flex items-center justify-center text-sm">02</span>
+                참여 자격 진단기
+            </h2>
+            <div class="bg-white rounded-3xl p-8 shadow-xl border border-slate-100">
+                <div id="quiz-container" class="space-y-8">
+                    <div>
+                        <label class="block text-sm font-bold mb-4">1. 귀하의 연령은 어떻게 되나요?</label>
+                        <div class="flex gap-4">
+                            <input type="number" id="age" placeholder="나이 입력" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-4">2. 현재 고용 보험에 가입되어 있나요?</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button onclick="setQuiz('employed', false)" id="emp-no" class="quiz-btn py-4 rounded-xl border border-slate-200 hover:bg-slate-50 transition-all font-medium">아니오 (미취업)</button>
+                            <button onclick="setQuiz('employed', true)" id="emp-yes" class="quiz-btn py-4 rounded-xl border border-slate-200 hover:bg-slate-50 transition-all font-medium">예 (재직중)</button>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-4">3. 군 필자이신가요?</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button onclick="setQuiz('military', true)" id="mil-yes" class="quiz-btn py-4 rounded-xl border border-slate-200 hover:bg-slate-50 transition-all font-medium">예</button>
+                            <button onclick="setQuiz('military', false)" id="mil-no" class="quiz-btn py-4 rounded-xl border border-slate-200 hover:bg-slate-50 transition-all font-medium">아니오</button>
+                        </div>
+                    </div>
+                    <button onclick="checkEligibility()" class="w-full bg-slate-900 text-white py-5 rounded-2xl font-bold text-lg hover:bg-black transition-all">결과 확인하기</button>
+                </div>
+                <div id="result-container" class="hidden text-center py-10">
+                    <div id="result-icon" class="text-6xl mb-6"></div>
+                    <h3 id="result-title" class="text-2xl font-bold mb-2"></h3>
+                    <p id="result-desc" class="text-slate-500 mb-8"></p>
+                    <button onclick="resetQuiz()" class="text-blue-600 font-bold hover:underline">다시 진단하기</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- [TAB] GUIDE -->
+        <div id="guide" class="tab-content">
+            <h2 class="text-3xl font-bold mb-8 flex items-center gap-3">
+                <span class="w-10 h-10 bg-purple-600 text-white rounded-lg flex items-center justify-center text-sm">03</span>
+                실무 가이드 & 팁
+            </h2>
+
+            <!-- 721 Law Interaction -->
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 mb-8">
+                <h3 class="text-xl font-bold mb-2">성장의 황금 비율: 7:2:1 법칙</h3>
+                <p class="text-sm text-slate-500 mb-8">바 위에 마우스를 올려 상세 내용을 확인하세요.</p>
+                <div class="space-y-6">
+                    <div class="group relative">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-bold text-sm">새로운 직무 경험 (Experience)</span>
+                            <span class="text-blue-600 font-bold">70%</span>
+                        </div>
+                        <div class="w-full bg-slate-100 h-4 rounded-full overflow-hidden">
+                            <div class="prog-bar h-full bg-blue-600" style="width: 70%"></div>
+                        </div>
+                        <div class="hidden group-hover:block absolute top-12 left-0 right-0 bg-blue-900 text-white text-xs p-3 rounded-lg z-10">
+                            가장 큰 성장판입니다. 단순 반복보다 도전적인 과제에 직접 부딪힐 때 역량이 폭발합니다.
+                        </div>
+                    </div>
+                    <div class="group relative">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-bold text-sm">멘토링 및 코칭 (Exposure)</span>
+                            <span class="text-blue-400 font-bold">20%</span>
+                        </div>
+                        <div class="w-full bg-slate-100 h-4 rounded-full overflow-hidden">
+                            <div class="prog-bar h-full bg-blue-400" style="width: 20%"></div>
+                        </div>
+                        <div class="hidden group-hover:block absolute top-12 left-0 right-0 bg-blue-800 text-white text-xs p-3 rounded-lg z-10">
+                            동료와 선배의 피드백을 통해 객관적인 실력을 점검하고 올바른 방향을 잡는 과정입니다.
+                        </div>
+                    </div>
+                    <div class="group relative">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-bold text-sm">이론 및 교육 (Education)</span>
+                            <span class="text-blue-200 font-bold">10%</span>
+                        </div>
+                        <div class="w-full bg-slate-100 h-4 rounded-full overflow-hidden">
+                            <div class="prog-bar h-full bg-blue-200" style="width: 10%"></div>
+                        </div>
+                        <div class="hidden group-hover:block absolute top-12 left-0 right-0 bg-blue-700 text-white text-xs p-3 rounded-lg z-10">
+                            기초 지식과 이론 학습입니다. 성장의 토대이지만 실무가 수반되지 않으면 휘발됩니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Intern Checklist -->
+            <div class="bg-purple-50 p-8 rounded-3xl border border-purple-100">
+                <h3 class="text-xl font-bold mb-6 text-purple-900">슬기로운 인턴 Checklist</h3>
+                <div id="checklist" class="space-y-4">
+                    <!-- Dynamic Checklist Items -->
+                    <label class="flex items-center gap-4 p-4 bg-white rounded-2xl cursor-pointer hover:bg-purple-100 transition-colors">
+                        <input type="checkbox" class="w-5 h-5 rounded border-purple-300 text-purple-600 focus:ring-purple-500">
+                        <span class="text-sm font-medium">업무 지시를 받을 때 항상 메모하는가?</span>
+                    </label>
+                    <label class="flex items-center gap-4 p-4 bg-white rounded-2xl cursor-pointer hover:bg-purple-100 transition-colors">
+                        <input type="checkbox" class="w-5 h-5 rounded border-purple-300 text-purple-600 focus:ring-purple-500">
+                        <span class="text-sm font-medium">모르는 것이 있을 때 "제가 이해한 게 맞을까요?"라고 묻는가?</span>
+                    </label>
+                    <label class="flex items-center gap-4 p-4 bg-white rounded-2xl cursor-pointer hover:bg-purple-100 transition-colors">
+                        <input type="checkbox" class="w-5 h-5 rounded border-purple-300 text-purple-600 focus:ring-purple-500">
+                        <span class="text-sm font-medium">매일의 업무 내용을 노션이나 블로그에 기록하는가?</span>
+                    </label>
+                    <label class="flex items-center gap-4 p-4 bg-white rounded-2xl cursor-pointer hover:bg-purple-100 transition-colors">
+                        <input type="checkbox" class="w-5 h-5 rounded border-purple-300 text-purple-600 focus:ring-purple-500">
+                        <span class="text-sm font-medium">회의 중 눈맞춤과 리액션으로 적극성을 보이는가?</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
     </main>
 
-    <footer class="bg-gray-100 py-8 px-4 text-center border-t border-gray-200">
-        <p class="text-gray-500 text-sm">2026 Future-Tomorrow Work Experience Program Guide</p>
-        <p class="text-gray-400 text-xs mt-2">© 2026 고용노동부 · 대한상공회의소 · 한국생산성본부</p>
-    </footer>
+    <!-- Bottom Mobile Nav -->
+    <div class="fixed bottom-0 w-full md:hidden glass border-t border-slate-200 px-6 py-3 flex justify-between">
+        <button onclick="switchTab('home')" class="flex flex-col items-center gap-1 text-xs text-blue-600 font-bold">
+            <i class="fas fa-home text-lg"></i><span>홈</span>
+        </button>
+        <button onclick="switchTab('info')" class="flex flex-col items-center gap-1 text-xs text-slate-400">
+            <i class="fas fa-file-alt text-lg"></i><span>정보</span>
+        </button>
+        <button onclick="switchTab('check')" class="flex flex-col items-center gap-1 text-xs text-slate-400">
+            <i class="fas fa-clipboard-check text-lg"></i><span>진단</span>
+        </button>
+        <button onclick="switchTab('guide')" class="flex flex-col items-center gap-1 text-xs text-slate-400">
+            <i class="fas fa-graduation-cap text-lg"></i><span>가이드</span>
+        </button>
+    </div>
 
+    <script>
+        // State management
+        let userData = {
+            employed: null,
+            military: null
+        };
+
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            // Show selected content
+            document.getElementById(tabId).classList.add('active');
+
+            // Update Nav Styles
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('text-blue-600', 'border-b-2', 'border-blue-600');
+                link.classList.add('text-slate-600');
+            });
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Quiz Logic
+        function setQuiz(key, value) {
+            userData[key] = value;
+            const prefix = key === 'employed' ? 'emp-' : 'mil-';
+            const buttons = document.querySelectorAll(`[id^="${prefix}"]`);
+            buttons.forEach(btn => btn.classList.remove('bg-blue-600', 'text-white', 'border-blue-600'));
+            
+            const selectedId = prefix + (value ? 'yes' : 'no');
+            document.getElementById(selectedId).classList.add('bg-blue-600', 'text-white', 'border-blue-600');
+        }
+
+        function checkEligibility() {
+            const age = parseInt(document.getElementById('age').value);
+            const container = document.getElementById('quiz-container');
+            const result = document.getElementById('result-container');
+            const icon = document.getElementById('result-icon');
+            const title = document.getElementById('result-title');
+            const desc = document.getElementById('result-desc');
+
+            if (isNaN(age) || userData.employed === null || userData.military === null) {
+                alert("모든 항목을 입력/선택해주세요!");
+                return;
+            }
+
+            container.classList.add('hidden');
+            result.classList.remove('hidden');
+
+            let maxAge = userData.military ? 39 : 34;
+            let isEligible = (age >= 15 && age <= maxAge) && !userData.employed;
+
+            if (isEligible) {
+                icon.innerHTML = '🎉';
+                title.innerText = "참여 가능 대상입니다!";
+                desc.innerText = "2026년 일경험 사업의 혜택을 누릴 수 있습니다. 지금 바로 신청 절차를 확인해보세요.";
+            } else {
+                icon.innerHTML = '💡';
+                title.innerText = "참여가 어려울 수 있습니다.";
+                let reason = userData.employed ? "현재 재직 중이시거나 고용보험 가입 상태이십니다." : "나이 요건(만 15~34세, 군필 시 최대 39세)이 맞지 않습니다.";
+                desc.innerText = reason + " 다만, 예외 조항(주 30시간 미만 근무 등)이 있을 수 있으니 상세 공고를 재확인 바랍니다.";
+            }
+        }
+
+        function resetQuiz() {
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('result-container').classList.add('hidden');
+            document.getElementById('age').value = '';
+            userData = { employed: null, military: null };
+            document.querySelectorAll('.quiz-btn').forEach(btn => btn.classList.remove('bg-blue-600', 'text-white', 'border-blue-600'));
+        }
+
+        // Progress Bar Animation on Load
+        window.onload = () => {
+            console.log("Interactive Page Loaded");
+        }
+    </script>
 </body>
 </html>
